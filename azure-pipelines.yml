@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -12,6 +13,15 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+
+- task: InvokeRESTAPI@1
+  inputs:
+    connectionType: 'connectedServiceNameARM'
+    azureServiceConnection: 'Pay-As-You-Go(9dddd436-ab34-40dd-a4d0-d2f5105646e2)'
+    method: 'POST'
+    urlSuffix: 'https://apim-multiuserpoc.azure-api.net/test1/resource'
+    waitForCompletion: 'false'
+    successCriteria: '201'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
