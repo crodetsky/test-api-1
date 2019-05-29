@@ -19,7 +19,7 @@ steps:
     connectionType: 'connectedServiceNameARM'
     azureServiceConnection: 'Pay-As-You-Go(9dddd436-ab34-40dd-a4d0-d2f5105646e2)'
     method: 'POST'
-    urlSuffix: 'https://apim-multiuserpoc.azure-api.net/test1/resource'
+    urlSuffix: 'https://apim-multiuserpoc.azure-api.net/test1/resource?api-version=1'
     waitForCompletion: 'false'
     successCriteria: '201'
 
