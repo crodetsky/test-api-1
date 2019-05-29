@@ -16,11 +16,11 @@ steps:
 
 - task: InvokeRESTAPI@1
   inputs:
-    connectionType: 'connectedServiceNameARM'
-    azureServiceConnection: 'Pay-As-You-Go(9dddd436-ab34-40dd-a4d0-d2f5105646e2)'
+    connectionType: 'connectedServiceName'
+    serviceConnection: 'Test API 1'
     method: 'POST'
-    urlSuffix: 'https://apim-multiuserpoc.azure-api.net/test1/resource?api-version=1'
-    waitForCompletion: 'false'
+    urlSuffix: '/resource'
+    waitForCompletion: 'true'
     successCriteria: '201'
 
 # - script: |
