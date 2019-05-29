@@ -1,0 +1,57 @@
+{
+  "id": "/apis/test-api-1",
+  "name": "Test API 1",
+  "apiRevision": "1",
+  "$ref-description": "",
+  "subscriptionRequired": false,
+  "serviceUrl": null,
+  "path": "test1",
+  "protocols": [
+    "https"
+  ],
+  "authenticationSettings": {
+    "oAuth2": null,
+    "openid": null
+  },
+  "subscriptionKeyParameterNames": {
+    "header": "Ocp-Apim-Subscription-Key",
+    "query": "subscription-key"
+  },
+  "isCurrent": true,
+  "operations": [
+    {
+      "id": "/apis/test-api-1/operations/create-resrouce",
+      "name": "Create resrouce",
+      "method": "POST",
+      "urlTemplate": "/resource",
+      "templateParameters": [],
+      "$ref-description": "",
+      "request": {
+        "queryParameters": [],
+        "headers": [],
+        "representations": []
+      },
+      "responses": [],
+      "policies": null,
+      "$ref-policy": "policies/POST__resource.xml"
+    },
+    {
+      "id": "/apis/test-api-1/operations/get-resource",
+      "name": "Get resource",
+      "method": "GET",
+      "urlTemplate": "/resource",
+      "templateParameters": [],
+      "$ref-description": "",
+      "request": {
+        "queryParameters": [],
+        "headers": [],
+        "representations": []
+      },
+      "responses": [],
+      "policies": null,
+      "$ref-policy": "policies/GET__resource.xml"
+    }
+  ],
+  "apiSchemas": [],
+  "__GitModuleVersion": 15
+}
