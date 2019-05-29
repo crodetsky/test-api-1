@@ -21,7 +21,6 @@ steps:
     method: 'POST'
     urlSuffix: '/resource'
     waitForCompletion: 'false'
-    successCriteria: 'Created'
 
 # - script: |
 #     echo Add other tasks to build, test, and deploy your project.
