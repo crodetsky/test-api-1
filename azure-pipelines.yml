@@ -20,8 +20,8 @@ steps:
     serviceConnection: 'Test API 1'
     method: 'POST'
     urlSuffix: '/resource'
-    waitForCompletion: 'true'
-    successCriteria: '201'
+    waitForCompletion: 'false'
+    successCriteria: 'Created'
 
 # - script: |
 #     echo Add other tasks to build, test, and deploy your project.
