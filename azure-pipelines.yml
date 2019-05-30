@@ -22,10 +22,6 @@ steps:
     urlSuffix: '/resource'
     waitForCompletion: 'false'
 
-- task: PublishPipelineArtifact@0
-  inputs:
-    artifactName: 'test api 1'
-    targetPath: '*'
 # - script: |
 #     echo Add other tasks to build, test, and deploy your project.
 #     echo See https://aka.ms/yaml
