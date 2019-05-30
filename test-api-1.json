@@ -2,22 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "apis_d6769d92694c403fa2884afa8357f012_path": {
-            "defaultValue": null,
-            "type": "SecureString"
-        },
-        "subscriptions_5cc882576855d0008a070001_displayName": {
-            "defaultValue": null,
-            "type": "SecureString"
-        },
-        "subscriptions_5cc882586855d0008a070002_displayName": {
-            "defaultValue": null,
-            "type": "SecureString"
-        },
-        "users_1_lastName": {
-            "defaultValue": null,
-            "type": "SecureString"
-        },
         "service_apim_MultiUserPoC_name": {
             "defaultValue": "apim-MultiUserPoC",
             "type": "String"
