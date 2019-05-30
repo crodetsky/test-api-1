@@ -1,56 +1,107 @@
 {
-  "name": "Test API 1",
-  "apiRevision": "1",
-  "$ref-description": "",
-  "subscriptionRequired": false,
-  "serviceUrl": null,
-  "path": "test1",
-  "protocols": [
-    "https"
-  ],
-  "authenticationSettings": {
-    "oAuth2": null,
-    "openid": null
-  },
-  "subscriptionKeyParameterNames": {
-    "header": "Ocp-Apim-Subscription-Key",
-    "query": "subscription-key"
-  },
-  "isCurrent": true,
-  "operations": [
-    {
-      "id": "/apis/test-api-1/operations/create-resrouce",
-      "name": "Create resrouce",
-      "method": "POST",
-      "urlTemplate": "/resource",
-      "templateParameters": [],
-      "$ref-description": "",
-      "request": {
-        "queryParameters": [],
-        "headers": [],
-        "representations": []
-      },
-      "responses": [],
-      "policies": null,
-      "$ref-policy": "policies/POST__resource.xml"
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "apis_d6769d92694c403fa2884afa8357f012_path": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "subscriptions_5cc882576855d0008a070001_displayName": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "subscriptions_5cc882586855d0008a070002_displayName": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "users_1_lastName": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "service_apim_MultiUserPoC_name": {
+            "defaultValue": "apim-MultiUserPoC",
+            "type": "String"
+        }
     },
-    {
-      "id": "/apis/test-api-1/operations/get-resource",
-      "name": "Get resource",
-      "method": "GET",
-      "urlTemplate": "/resource",
-      "templateParameters": [],
-      "$ref-description": "",
-      "request": {
-        "queryParameters": [],
-        "headers": [],
-        "representations": []
-      },
-      "responses": [],
-      "policies": null,
-      "$ref-policy": "policies/GET__resource.xml"
-    }
-  ],
-  "apiSchemas": [],
-  "__GitModuleVersion": 15
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.ApiManagement/service/apis",
+            "apiVersion": "2019-01-01",
+            "name": "[concat(parameters('service_apim_MultiUserPoC_name'), '/test-api-1')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ApiManagement/service', parameters('service_apim_MultiUserPoC_name'))]"
+            ],
+            "properties": {
+                "displayName": "Test API 1",
+                "apiRevision": "1",
+                "subscriptionRequired": false,
+                "path": "test1",
+                "protocols": [
+                    "https"
+                ],
+                "isCurrent": true
+            }
+        },
+        {
+            "type": "Microsoft.ApiManagement/service/apis/operations",
+            "apiVersion": "2019-01-01",
+            "name": "[concat(parameters('service_apim_MultiUserPoC_name'), '/test-api-1/create-resrouce')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_apim_MultiUserPoC_name'), 'test-api-1')]",
+                "[resourceId('Microsoft.ApiManagement/service', parameters('service_apim_MultiUserPoC_name'))]"
+            ],
+            "properties": {
+                "displayName": "Create resrouce",
+                "method": "POST",
+                "urlTemplate": "/resource",
+                "templateParameters": [],
+                "responses": []
+            }
+        },
+        {
+            "type": "Microsoft.ApiManagement/service/apis/operations",
+            "apiVersion": "2019-01-01",
+            "name": "[concat(parameters('service_apim_MultiUserPoC_name'), '/test-api-1/get-resource')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_apim_MultiUserPoC_name'), 'test-api-1')]",
+                "[resourceId('Microsoft.ApiManagement/service', parameters('service_apim_MultiUserPoC_name'))]"
+            ],
+            "properties": {
+                "displayName": "Get resource",
+                "method": "GET",
+                "urlTemplate": "/resource",
+                "templateParameters": [],
+                "responses": []
+            }
+        },
+        {
+            "type": "Microsoft.ApiManagement/service/apis/operations/policies",
+            "apiVersion": "2019-01-01",
+            "name": "[concat(parameters('service_apim_MultiUserPoC_name'), '/test-api-1/create-resrouce/policy')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('service_apim_MultiUserPoC_name'), 'test-api-1', 'create-resrouce')]",
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_apim_MultiUserPoC_name'), 'test-api-1')]",
+                "[resourceId('Microsoft.ApiManagement/service', parameters('service_apim_MultiUserPoC_name'))]"
+            ],
+            "properties": {
+                "value": "<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy, place the cursor at the desired insertion point and select a policy from the sidebar.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Position the <base> element within a section element to inherit all policies from the corresponding section element in the enclosing scope.\r\n    - Remove the <base> element to prevent inheriting policies from the corresponding section element in the enclosing scope.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n    - Comments within policy elements are not supported and may disappear. Place your comments between policy elements or at a higher level scope.\r\n-->\r\n<policies>\r\n  <inbound>\r\n    <base />\r\n    <mock-response status-code=\"201\" content-type=\"application/json\" />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>",
+                "format": "xml"
+            }
+        },
+        {
+            "type": "Microsoft.ApiManagement/service/apis/operations/policies",
+            "apiVersion": "2019-01-01",
+            "name": "[concat(parameters('service_apim_MultiUserPoC_name'), '/test-api-1/get-resource/policy')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ApiManagement/service/apis/operations', parameters('service_apim_MultiUserPoC_name'), 'test-api-1', 'get-resource')]",
+                "[resourceId('Microsoft.ApiManagement/service/apis', parameters('service_apim_MultiUserPoC_name'), 'test-api-1')]",
+                "[resourceId('Microsoft.ApiManagement/service', parameters('service_apim_MultiUserPoC_name'))]"
+            ],
+            "properties": {
+                "value": "<!--\r\n    IMPORTANT:\r\n    - Policy elements can appear only within the <inbound>, <outbound>, <backend> section elements.\r\n    - To apply a policy to the incoming request (before it is forwarded to the backend service), place a corresponding policy element within the <inbound> section element.\r\n    - To apply a policy to the outgoing response (before it is sent back to the caller), place a corresponding policy element within the <outbound> section element.\r\n    - To add a policy, place the cursor at the desired insertion point and select a policy from the sidebar.\r\n    - To remove a policy, delete the corresponding policy statement from the policy document.\r\n    - Position the <base> element within a section element to inherit all policies from the corresponding section element in the enclosing scope.\r\n    - Remove the <base> element to prevent inheriting policies from the corresponding section element in the enclosing scope.\r\n    - Policies are applied in the order of their appearance, from the top down.\r\n    - Comments within policy elements are not supported and may disappear. Place your comments between policy elements or at a higher level scope.\r\n-->\r\n<policies>\r\n  <inbound>\r\n    <base />\r\n    <mock-response status-code=\"200\" content-type=\"application/json\" />\r\n  </inbound>\r\n  <backend>\r\n    <base />\r\n  </backend>\r\n  <outbound>\r\n    <base />\r\n  </outbound>\r\n  <on-error>\r\n    <base />\r\n  </on-error>\r\n</policies>",
+                "format": "xml"
+            }
+        }
+    ]
 }
